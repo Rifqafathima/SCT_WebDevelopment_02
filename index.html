@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch Web Application</title>
+  <link rel="stylesheet" href="index.css">
+ 
+</head>
+<body>
+  <div class=" task"> 
+
+ <h2>Task2</h2> </div>
+ <div class = " example">
+  <h3>Here is an example for Stopwatch</h3></div>
+  
+  <div class="stopwatch-container">
+    <h1> Stopwatch </h1>
+    <div class="display">
+      <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span>
+    </div>
+    <div class="controls">
+      <button id="startStop">Start</button>
+      <button id="stop">Lap</button>
+      <button id="reset">Reset</button>
+    </div>
+    <div class="laps">
+      
+      <ul id="lapList"></ul>
+    </div>
+  </div>
+  <script>
+    let timer;
+    let minutes = 0;
+    let seconds = 0;
+    let milliseconds = 0;
+    let isRunning = false;
+
+    const startStopButton = document.getElementById("startStop");
+    const lapButton = document.getElementById("stop");  // Correct button reference
+    const resetButton = document.getElementById("reset");
+    const minutesDisplay = document.getElementById("minutes");
+    const secondsDisplay = document.getElementById("seconds");
+    const millisecondsDisplay = document.getElementById("milliseconds");
+    const lapList = document.getElementById("lapList");
+
+    function updateDisplay() {
+      millisecondsDisplay.textContent = milliseconds.toString().padStart(2, '0');
+      secondsDisplay.textContent = seconds.toString().padStart(2, '0');
+      minutesDisplay.textContent = minutes.toString().padStart(2, '0');
+    }
+
+    function startStop() {
+      if (isRunning) {
+        clearInterval(timer);
+        startStopButton.textContent = "Start";
+      } else {
+        timer = setInterval(() => {
+          milliseconds += 1;
+          if (milliseconds >= 100) {
+            milliseconds = 0;
+            seconds += 1;
+          }
+          if (seconds >= 60) {
+            seconds = 0;
+            minutes += 1;
+          }
+          updateDisplay();
+        }, 10);
+        startStopButton.textContent = "Pause";
+      }
+      isRunning = !isRunning;
+    }
+
+    function reset() {
+      clearInterval(timer);
+      isRunning = false;
+      minutes = 0;
+      seconds = 0;
+      milliseconds = 0;
+      updateDisplay();
+      startStopButton.textContent = "Start";
+      lapList.innerHTML = ""; // Clear laps
+    }
+
+    function recordLap() {
+      if (isRunning) {
+        const lapTime = `${minutesDisplay.textContent}:${secondsDisplay.textContent}:${millisecondsDisplay.textContent}`;
+        const lapItem = document.createElement("li");
+        lapItem.textContent = `Lap ${lapList.childElementCount + 1}: ${lapTime}`;
+        lapList.appendChild(lapItem);
+      }
+    }
+
+    startStopButton.addEventListener("click", startStop);
+    lapButton.addEventListener("click", recordLap);
+    resetButton.addEventListener("click", reset);
+  </script>
+</body>
+</html>

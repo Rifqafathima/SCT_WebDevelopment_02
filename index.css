@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;  /* Stack items vertically */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #69084c;
+  font-family: Arial, sans-serif;
+  color: rgb(21, 19, 19);
+}
+
+.task {
+  padding-top: 5px;
+  font-size: 1.2em;
+  color:aliceblue;  /* Use a bright color for visibility */
+  text-align: center; /* Center text */
+}
+
+.example {
+  font-size: 1em;
+  color: white;
+  text-align: center;
+  margin-bottom:2rem;  /* Add some space before the stopwatch */
+}
+
+.stopwatch-container {
+  text-align: center;
+  background: #0ac4f2;
+  padding: 2em;
+  border-radius: 35px;
+  width: 450px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;  /* Stack items vertically */
+  justify-content: center;
+}
+
+.display {
+  font-size: 2em;
+  margin-bottom: 1em;
+  color: #ff5722;
+}
+
+.controls button {
+  background-color: #3a2caa;
+  color: white;
+  border: none;
+  padding: 1.5em 3.5em;
+  margin: 3 em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 35px;
+  
+  
+}
+
+.controls button:hover {
+  background-color: #981010;
+}
+
+.stop {
+  margin-top: 1em;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.laps ul {
+  list-style: none;
+}
+
+.laps ul li {
+  background-color: #555;
+  padding: 0.5em;
+  margin: 0.2em 0;
+  border-radius: 5px;
+}
